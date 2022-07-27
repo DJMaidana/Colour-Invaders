@@ -8,11 +8,13 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] GameObject playerBullet;
 
+    public bool bulletFired = false;
+
     void Update()
     {
         MovePlayer();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !bulletFired)    //  Only shoots if there is no bullet instantiated to resemble original mechanics
         {
             Shoot();
         }
@@ -29,5 +31,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 bulletPosition = transform.position + Vector3.up;           // From player position get offset for the bullet position
         Instantiate(playerBullet, bulletPosition, transform.rotation);      // Instantiate bullet
+
+        bulletFired = true;
     }
 }
