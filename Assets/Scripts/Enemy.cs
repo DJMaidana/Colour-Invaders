@@ -20,14 +20,14 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (hitPoints > 1)
-        {
-            hitPoints--;
-        }
-        else
-        {
-            EnemyDeath();
-        }
+            if (hitPoints > 1)
+            {
+                hitPoints--;
+            }
+            else
+            {
+                EnemyDeath();
+            }
     }
 
     void EnemyDeath()
