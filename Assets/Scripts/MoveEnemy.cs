@@ -5,13 +5,17 @@ using UnityEngine;
 public class MoveEnemy : MonoBehaviour
 {
     Vector3 movementDirection = Vector3.right;
-    [SerializeField] float lateralSpeed = 1f;
-    [SerializeField] float verticalSpeed = 1f;
+    public float lateralSpeed = 1f;
+
+    [SerializeField] float verticalSpeed = .25f;
+
+    GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = FindObjectOfType<GameManager>();
+        lateralSpeed = gameManager.gameDifficulty;
     }
 
     // Update is called once per frame
