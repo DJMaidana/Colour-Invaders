@@ -8,8 +8,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] float difficultyIncrease = .1f;
     public int enemiesConnected = 0;
 
+    [SerializeField] float currentScore;
+    float hiScore;
+
     public List<Enemy> listEnemiesConnected = new List<Enemy>();
-    public List<GameObject> enemiesToDestroy = new List<GameObject>();
 
     MoveEnemy enemyMover;
 
@@ -28,6 +30,8 @@ public class GameManager : MonoBehaviour
             enemy.EnemyDeath();
         }
 
+        CalculateScore();
+
         listEnemiesConnected.Clear();
     }
 
@@ -35,4 +39,25 @@ public class GameManager : MonoBehaviour
     {
         enemyMover.lateralSpeed += difficultyIncrease;
     }
+
+    void CalculateScore()
+    {
+        int enemiesDestroyed = listEnemiesConnected.Count;
+        float scoreAwarded = enemiesDestroyed * Fibonacci(enemiesDestroyed + 1) * 10;
+
+        currentScore += scoreAwarded;
+    }
+
+    int Fibonacci(int n)  
+    {  
+        if ((n == 0) || (n == 1))  
+        {  
+            return n;  
+        }  
+        else
+        {  
+            return Fibonacci(n - 1) + Fibonacci(n - 2);  
+        }
+    }  
+
 }

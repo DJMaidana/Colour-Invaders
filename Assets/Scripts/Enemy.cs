@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
 
     GameManager gameManager;
 
-    public string enemyType = "Green";      //  This is a bad practice since it has to be manually set in the Inspector and string references are typo-prone. To be refactored
+    public string enemyType = "Set to respective color";
     public bool alreadyChecked = false;
     public bool isInFront;
     bool hasFired;
