@@ -47,6 +47,4 @@ MonoBehaviour:
   gameDifficulty: 1
   difficultyIncrease: 0.1
   currentScore: 0
-  currentScoreText: {fileID: 0}
-  hiScoreText: {fileID: 0}
   listEnemiesConnected: []

@@ -1920,6 +1920,7 @@ GameObject:
   - component: {fileID: 895417525}
   - component: {fileID: 895417524}
   - component: {fileID: 895417523}
+  - component: {fileID: 895417527}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2016,6 +2017,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &895417527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895417522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11934056a99623e33ba5e7994d18a9a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  livesImages:
+  - {fileID: 1412751785}
+  - {fileID: 700671534}
+  - {fileID: 1993761751}
+  currentScoreText: {fileID: 1105846368}
+  hiScoreText: {fileID: 825825986}
 --- !u!1001 &900762349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4695,14 +4714,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 595667609164961685, guid: dcd1db86df65e3873ab5a0e2b319ab7d, type: 3}
-      propertyPath: hiScoreText
-      value: 
-      objectReference: {fileID: 825825986}
-    - target: {fileID: 595667609164961685, guid: dcd1db86df65e3873ab5a0e2b319ab7d, type: 3}
-      propertyPath: currentScoreText
-      value: 
-      objectReference: {fileID: 1105846368}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcd1db86df65e3873ab5a0e2b319ab7d, type: 3}
 --- !u!1001 &1991754911446842005
@@ -4998,18 +5009,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8271957974432311643, guid: 508a3587f7408e9bb80eabe759d0b96f, type: 3}
-      propertyPath: livesImages.Array.data[0]
-      value: 
-      objectReference: {fileID: 1412751785}
-    - target: {fileID: 8271957974432311643, guid: 508a3587f7408e9bb80eabe759d0b96f, type: 3}
-      propertyPath: livesImages.Array.data[1]
-      value: 
-      objectReference: {fileID: 700671534}
-    - target: {fileID: 8271957974432311643, guid: 508a3587f7408e9bb80eabe759d0b96f, type: 3}
-      propertyPath: livesImages.Array.data[2]
-      value: 
-      objectReference: {fileID: 1993761751}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 508a3587f7408e9bb80eabe759d0b96f, type: 3}
 --- !u!1001 &8642494812727745874

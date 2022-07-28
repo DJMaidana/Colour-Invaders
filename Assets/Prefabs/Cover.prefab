@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoints: 5
+  vfx_Explode: {fileID: 9220420198951553788, guid: 48ac90266be0429f0bcda865fcce0ce3, type: 3}
