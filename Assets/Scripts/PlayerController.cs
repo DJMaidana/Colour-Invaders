@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 1f;
     [SerializeField] int hitPoints = 3;
 
-    [SerializeField] GameObject playerBullet;
+    [SerializeField] GameObject playerBullet;    
 
-    [SerializeField] Image[] livesImages;    
+    [SerializeField] ParticleSystem vfx_Explode;
+
+    UIManager canvas;
 
     public bool bulletFired = false;
+
+    void Start()
+    {
+        canvas = FindObjectOfType<UIManager>();
+    }
 
     void Update()
     {
@@ -70,13 +76,15 @@ public class PlayerController : MonoBehaviour
     void PlayerDamaged()
     {
         hitPoints--;
-        livesImages[hitPoints].enabled = false;
+        canvas.livesImages[hitPoints].enabled = false;
     }
 
     void GameOver()
     {
         hitPoints = 0;
-        livesImages[hitPoints].enabled = false;
+        canvas.livesImages[hitPoints].enabled = false;
+
+        Instantiate(vfx_Explode, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 }

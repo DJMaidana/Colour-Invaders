@@ -5,6 +5,7 @@ using UnityEngine;
 public class Cover : MonoBehaviour
 {
     [SerializeField] int hitPoints = 5;
+    [SerializeField] ParticleSystem vfx_Explode;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +38,7 @@ public class Cover : MonoBehaviour
 
     void DestroyCover()
     {
+        Instantiate(vfx_Explode, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 }
