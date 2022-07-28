@@ -127,6 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: 1
   enemyBullet: {fileID: 4096729282387097182, guid: 82874d6539c43ec6cb1871f90a8929ae, type: 3}
+  enemyType: White
+  alreadyChecked: 0
   isInFront: 0
 --- !u!50 &417085461
 Rigidbody2D:
@@ -148,4 +150,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4

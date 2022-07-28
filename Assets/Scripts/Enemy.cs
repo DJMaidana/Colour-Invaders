@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
 
     GameManager gameManager;
 
+    public string enemyType = "Green";      //  This is a bad practice since it has to be manually set in the Inspector and string references are typo-prone. To be refactored
+    public bool alreadyChecked = false;
     public bool isInFront;
     bool hasFired;
     float firingRate;
@@ -57,18 +59,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void HitByPlayer()
+    public void HitByPlayer()
     {   
         if (hitPoints > 1)
         {
-            //Add score on hit
             hitPoints--;
         }
         else
         {
-            //Calculate neighbors
-            //Calculate score on death
-            EnemyDeath();
+            AddSelfToList();          
+            AddNeighborsToList();
         }
     }
 
@@ -84,9 +84,133 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void EnemyDeath()
+    public void EnemyDeath()
     {
         gameManager.IncreaseDifficulty();
         Destroy(gameObject);
     }
+
+    void AddSelfToList()
+    {
+        alreadyChecked = true;
+        gameManager.listEnemiesConnected.Add(gameObject.GetComponent<Enemy>());
+    }
+
+    public void AddNeighborsToList()
+    {
+        gameManager.GetConnectedEnemies();
+    }
+
+    public void CheckNeighbors()
+    {
+        CheckUp();
+        CheckDown();
+        CheckLeft();
+        CheckRight();
+    }
+
+    void CheckUp()
+    {
+        float yRayDistance = 1f;    // The distance between adjacent enemies, otherwise might flag enemies that are far away.
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, yRayDistance);   //  Cast a ray upwards, returns the first object it collides with
+        
+        if (hit.collider != null)   // If there is a collision
+        {
+            bool hitIsEnemy = hit.collider.CompareTag("Enemy");
+
+            if (hitIsEnemy)    // If it's an enemy
+            {
+                bool hitAlreadyChecked = hit.collider.GetComponent<Enemy>().alreadyChecked;
+                string enemyType = hit.collider.GetComponent<Enemy>().enemyType;
+
+                if (!hitAlreadyChecked && enemyType == this.enemyType)     // If is the same color and it hasn't been added to the List of neighboring enemies
+                {
+                    gameManager.listEnemiesConnected.Add(hit.collider.gameObject.GetComponent<Enemy>());    // Add it to the list
+
+                    hit.collider.GetComponent<Enemy>().alreadyChecked = true;                                                             // Check it as added so the recursions don't add it again
+                    hit.collider.GetComponent<Enemy>().CheckNeighbors();                                    // Checks the collision neighbors recursively
+                }
+            }
+        }
+    }
+
+    void CheckDown()
+    {
+        float yRayDistance = 1f;    // The distance between adjacent enemies, otherwise might flag enemies that are far away.
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, yRayDistance);   //  Cast a ray downwards, returns the first object it collides with
+        
+        if (hit.collider != null)   // If there is a collision
+        {
+            bool hitIsEnemy = hit.collider.CompareTag("Enemy");
+
+            if (hitIsEnemy)    // If it's an enemy
+            {
+                bool hitAlreadyChecked = hit.collider.GetComponent<Enemy>().alreadyChecked;
+                string enemyType = hit.collider.GetComponent<Enemy>().enemyType;
+
+                if (!hitAlreadyChecked && enemyType == this.enemyType)     // If is the same color and it hasn't been added to the List of neighboring enemies
+                {
+                    gameManager.listEnemiesConnected.Add(hit.collider.gameObject.GetComponent<Enemy>());    // Add it to the list
+
+                    hit.collider.GetComponent<Enemy>().alreadyChecked = true;                                                             // Check it as added so the recursions don't add it again
+                    hit.collider.GetComponent<Enemy>().CheckNeighbors();                                    // Checks the collision neighbors recursively
+                }
+            }
+        }
+    }
+
+    void CheckLeft()
+    {
+        float xRayDistance = 2f;    // The distance between adjacent enemies, otherwise might flag enemies that are far away.
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, xRayDistance);   //  Cast a ray to the left, returns the first object it collides with
+        
+        if (hit.collider != null)   // If there is a collision
+        {
+            bool hitIsEnemy = hit.collider.CompareTag("Enemy");
+
+            if (hitIsEnemy)    // If it's an enemy
+            {
+                bool hitAlreadyChecked = hit.collider.GetComponent<Enemy>().alreadyChecked;
+                string enemyType = hit.collider.GetComponent<Enemy>().enemyType;
+
+                if (!hitAlreadyChecked && enemyType == this.enemyType)     // If is the same color and it hasn't been added to the List of neighboring enemies
+                {
+                    gameManager.listEnemiesConnected.Add(hit.collider.gameObject.GetComponent<Enemy>());    // Add it to the list
+
+                    hit.collider.GetComponent<Enemy>().alreadyChecked = true;                                                             // Check it as added so the recursions don't add it again
+                    hit.collider.GetComponent<Enemy>().CheckNeighbors();                                    // Checks the collision neighbors recursively
+                }
+            }
+        }
+    }
+
+    void CheckRight()
+    {
+        float xRayDistance = 2f;    // The distance between adjacent enemies, otherwise might flag enemies that are far away.
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, xRayDistance);   //  Cast a ray to the right, returns the first object it collides with
+        
+        if (hit.collider != null)   // If there is a collision
+        {
+            bool hitIsEnemy = hit.collider.CompareTag("Enemy");
+
+            if (hitIsEnemy)    // If it's an enemy
+            {
+                bool hitAlreadyChecked = hit.collider.GetComponent<Enemy>().alreadyChecked;
+                string enemyType = hit.collider.GetComponent<Enemy>().enemyType;
+
+                if (!hitAlreadyChecked && enemyType == this.enemyType)     // If is the same color and it hasn't been added to the List of neighboring enemies
+                {
+                    gameManager.listEnemiesConnected.Add(hit.collider.gameObject.GetComponent<Enemy>());    // Add it to the list
+
+                    hit.collider.GetComponent<Enemy>().alreadyChecked = true;                                                             // Check it as added so the recursions don't add it again
+                    hit.collider.GetComponent<Enemy>().CheckNeighbors();                                    // Checks the collision neighbors recursively
+                }
+            }
+        }
+    }
+
 }
