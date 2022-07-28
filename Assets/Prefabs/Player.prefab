@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8271957974432311642}
   - component: {fileID: 8271957974432311637}
   - component: {fileID: 8271957974432311643}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,3 +99,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 5
   playerBullet: {fileID: 1688185707649724095, guid: 5b2654b4dafa1429facf82507bb4ae5c, type: 3}
+  bulletFired: 0
