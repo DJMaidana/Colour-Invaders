@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] int hitPoints = 1;
 
     [SerializeField] GameObject enemyBullet;
+    [SerializeField] ParticleSystem vfx_Explode;
 
     GameManager gameManager;
 
@@ -86,6 +87,7 @@ public class Enemy : MonoBehaviour
 
     public void EnemyDeath()
     {
+        Instantiate(vfx_Explode, transform.position, transform.rotation);
         gameManager.IncreaseDifficulty();
         Destroy(gameObject);
     }
