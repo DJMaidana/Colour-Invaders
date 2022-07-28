@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: 1
   enemyBullet: {fileID: 4096729282387097182, guid: 82874d6539c43ec6cb1871f90a8929ae, type: 3}
+  vfx_Explode: {fileID: 9220420198951553788, guid: bf93e0b7729e6d7eebf4ca5192f6eac8, type: 3}
   enemyType: Green
   alreadyChecked: 0
   isInFront: 0

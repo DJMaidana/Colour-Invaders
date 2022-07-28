@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int hitPoints = 3;
 
     [SerializeField] GameObject playerBullet;
+
+    [SerializeField] Image[] livesImages;    
 
     public bool bulletFired = false;
 
@@ -67,10 +70,13 @@ public class PlayerController : MonoBehaviour
     void PlayerDamaged()
     {
         hitPoints--;
+        livesImages[hitPoints].enabled = false;
     }
 
     void GameOver()
     {
+        hitPoints = 0;
+        livesImages[hitPoints].enabled = false;
         Destroy(gameObject);
     }
 }
