@@ -8,9 +8,16 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] GameObject enemyBullet;
 
+    GameManager gameManager;
+
     public bool isInFront;
     bool hasFired;
     float firingRate;
+
+    void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
     void Update()
     {
@@ -79,6 +86,7 @@ public class Enemy : MonoBehaviour
 
     void EnemyDeath()
     {
+        gameManager.IncreaseDifficulty();
         Destroy(gameObject);
     }
 }
