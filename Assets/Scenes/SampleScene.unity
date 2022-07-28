@@ -4614,8 +4614,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameDifficulty: 1
   difficultyIncrease: 0.1
-  enemiesConnected: 0
   currentScore: 0
+  currentScoreText: {fileID: 0}
+  hiScoreText: {fileID: 0}
   listEnemiesConnected: []
 --- !u!4 &2138174605
 Transform:
@@ -4982,6 +4983,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8271957974432311643, guid: 508a3587f7408e9bb80eabe759d0b96f, type: 3}
+      propertyPath: livesImages.Array.data[0]
+      value: 
+      objectReference: {fileID: 1412751785}
+    - target: {fileID: 8271957974432311643, guid: 508a3587f7408e9bb80eabe759d0b96f, type: 3}
+      propertyPath: livesImages.Array.data[1]
+      value: 
+      objectReference: {fileID: 700671534}
+    - target: {fileID: 8271957974432311643, guid: 508a3587f7408e9bb80eabe759d0b96f, type: 3}
+      propertyPath: livesImages.Array.data[2]
+      value: 
+      objectReference: {fileID: 1993761751}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 508a3587f7408e9bb80eabe759d0b96f, type: 3}
 --- !u!1001 &8642494812727745874

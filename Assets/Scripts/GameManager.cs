@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public float gameDifficulty = 1;
+    public float gameDifficulty = 1f;
     [SerializeField] float difficultyIncrease = .1f;
-    public int enemiesConnected = 0;
 
     [SerializeField] float currentScore;
+    [SerializeField] TMP_Text currentScoreText;
+    [SerializeField] TMP_Text hiScoreText;
     float hiScore;
 
     public List<Enemy> listEnemiesConnected = new List<Enemy>();
@@ -46,6 +48,10 @@ public class GameManager : MonoBehaviour
         float scoreAwarded = enemiesDestroyed * Fibonacci(enemiesDestroyed + 1) * 10;
 
         currentScore += scoreAwarded;
+
+        string format = "0000000";
+        string currentScoreString = currentScore.ToString(format);
+        currentScoreText.text = $"SCORE - {currentScoreString}";
     }
 
     int Fibonacci(int n)  
@@ -59,5 +65,10 @@ public class GameManager : MonoBehaviour
             return Fibonacci(n - 1) + Fibonacci(n - 2);  
         }
     }  
+
+    public void GameOver()
+    {
+        
+    }
 
 }
