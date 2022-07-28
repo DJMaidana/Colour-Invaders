@@ -47,8 +47,6 @@ public class Enemy : MonoBehaviour
 
                 HitSelf();
                 break;
-
-        
         }
     }
 
