@@ -5,19 +5,21 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 1f;
-    [SerializeField] int hitPoints = 3;
+    public int hitPoints = 3;
 
     [SerializeField] GameObject playerBullet;    
 
     [SerializeField] ParticleSystem vfx_Explode;
 
     UIManager canvas;
+    GameManager gameManager;
 
     public bool bulletFired = false;
 
     void Start()
     {
         canvas = FindObjectOfType<UIManager>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -85,6 +87,7 @@ public class PlayerController : MonoBehaviour
         canvas.livesImages[hitPoints].enabled = false;
 
         Instantiate(vfx_Explode, transform.position, transform.rotation);
+        gameManager.Invoke("GameOver", 1f);
         Destroy(gameObject);
     }
 }
