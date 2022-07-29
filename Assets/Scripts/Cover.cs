@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Cover : MonoBehaviour
 {
+    [Header("Variables")]
     [SerializeField] int hitPoints = 5;
+
+    [Header("Prefabs")]
     [SerializeField] ParticleSystem vfx_Explode;
     [SerializeField] AudioClip sfx_explosion;
     [SerializeField] AudioClip sfx_hit;

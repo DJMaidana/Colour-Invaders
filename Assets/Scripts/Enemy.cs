@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Variables")]
     [SerializeField] int hitPoints = 1;
     [SerializeField] int minShootingPeriod = 5;
     [SerializeField] int maxShootingPeriod = 10;
         
-
+    [Header("Prefabs")]
     [SerializeField] GameObject enemyBullet;
     [SerializeField] ParticleSystem vfx_Explode;
     [SerializeField] AudioClip sfx_laser;
@@ -17,7 +18,7 @@ public class Enemy : MonoBehaviour
     AudioSource audioSource;
     GameManager gameManager;
 
-
+    [Header("States")]
     public string enemyType = "Set to respective color";
     public bool alreadyChecked = false;
     public bool isInFront;

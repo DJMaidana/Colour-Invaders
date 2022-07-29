@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Tooltip("Enemy Prefabs to randomize go here")]
-    [SerializeField] GameObject[] enemyPrefabs;
+    [Header("Variables")]
     [Tooltip("How many rows the enemy formation will have")]
     [SerializeField] int rows = 5;
     [Tooltip("How many columns the enemy formation will have")]    
     [SerializeField] int columns = 10;
+
+    [Header("Prefabs")]
+    [Tooltip("Enemy Prefabs to randomize go here")]
+    [SerializeField] GameObject[] enemyPrefabs;
 
     void Awake()
     {

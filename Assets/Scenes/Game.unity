@@ -232,13 +232,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bec444ec330fefea89ba57579ed1f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rows: 5
+  columns: 9
   enemyPrefabs:
   - {fileID: 8642494814160568755, guid: d1ff9c76b1a59305ca7743361c9af7b6, type: 3}
   - {fileID: 8716378059163923234, guid: 4f69273e0a14539cfa3ab5ef14f576eb, type: 3}
   - {fileID: 1991754912465745533, guid: eca007c96c37e7c258bcf1ff72a16fb6, type: 3}
   - {fileID: 3531631834132499579, guid: 8214d9964f56315b8baf6b64828399ff, type: 3}
-  rows: 5
-  columns: 9
 --- !u!1 &385784196
 GameObject:
   m_ObjectHideFlags: 0

@@ -106,6 +106,7 @@ MonoBehaviour:
   vfx_Explode: {fileID: 9220420198951553788, guid: bf93e0b7729e6d7eebf4ca5192f6eac8, type: 3}
   sfx_laser: {fileID: 8300000, guid: 6a19bfaf584dbae039542ce235482aae, type: 3}
   sfx_explosion: {fileID: 8300000, guid: b6912a3228ee0d37a99070818b0a1a9c, type: 3}
+  sfx_hit: {fileID: 8300000, guid: 41ee6883295e5be328516753adabe1ba, type: 3}
   bulletFired: 0
 --- !u!61 &4786956871360556454
 BoxCollider2D:
