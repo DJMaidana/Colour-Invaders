@@ -8,8 +8,12 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] GameObject enemyBullet;
     [SerializeField] ParticleSystem vfx_Explode;
+    [SerializeField] AudioClip sfx_laser;
+    [SerializeField] AudioClip sfx_explosion;
 
+    AudioSource audioSource;
     GameManager gameManager;
+
 
     public string enemyType = "Set to respective color";
     public bool alreadyChecked = false;
@@ -20,6 +24,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -38,6 +43,7 @@ public class Enemy : MonoBehaviour
 
     void Shoot()
     {
+        audioSource.PlayOneShot(sfx_laser);
         Vector3 bulletPosition = transform.position + Vector3.down;           // From enemy position get offset for the bullet position
         Quaternion bulletRotation = Quaternion.Euler(0f, 0f, -180f);          // Rotate Bullet so it goes down
         Instantiate(enemyBullet, bulletPosition, bulletRotation);       
@@ -87,8 +93,22 @@ public class Enemy : MonoBehaviour
 
     public void EnemyDeath()
     {
+        audioSource.PlayOneShot(sfx_explosion);
         Instantiate(vfx_Explode, transform.position, transform.rotation);
         gameManager.IncreaseDifficulty();
+        DestroySequence();
+    }
+
+    void DestroySequence()
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
+        Destroy(GetComponent<Rigidbody2D>());
+        Invoke("DestroyGameObject", 1f);
+    }
+
+    void DestroyGameObject()
+    {
         Destroy(gameObject);
     }
 

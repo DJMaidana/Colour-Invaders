@@ -6,14 +6,16 @@ public class Cover : MonoBehaviour
 {
     [SerializeField] int hitPoints = 5;
     [SerializeField] ParticleSystem vfx_Explode;
+    [SerializeField] AudioClip sfx_explosion;
+    [SerializeField] AudioClip sfx_hit;
 
-    // Start is called before the first frame update
+    AudioSource audioSource;
+
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();  
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -33,12 +35,27 @@ public class Cover : MonoBehaviour
 
     void DamageCover()
     {
+        audioSource.PlayOneShot(sfx_hit);
         hitPoints--;
     }
 
     void DestroyCover()
     {
+        audioSource.PlayOneShot(sfx_explosion);
         Instantiate(vfx_Explode, transform.position, transform.rotation);
+        DestroySequence();
+    }
+
+    void DestroySequence()
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
+        Destroy(GetComponent<Rigidbody2D>());
+        Invoke("DestroyGameObject", 1f);
+    }
+
+    void DestroyGameObject()
+    {
         Destroy(gameObject);
     }
 }

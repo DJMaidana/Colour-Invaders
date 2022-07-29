@@ -8,9 +8,11 @@ public class PlayerController : MonoBehaviour
     public int hitPoints = 3;
 
     [SerializeField] GameObject playerBullet;    
-
     [SerializeField] ParticleSystem vfx_Explode;
+    [SerializeField] AudioClip sfx_laser;
+    [SerializeField] AudioClip sfx_explosion;
 
+    AudioSource audioSource;
     UIManager canvas;
     GameManager gameManager;
 
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour
     {
         canvas = FindObjectOfType<UIManager>();
         gameManager = FindObjectOfType<GameManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -41,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
     void Shoot()
     {
+        audioSource.PlayOneShot(sfx_laser);
         Vector3 bulletPosition = transform.position + Vector3.up;           // From player position get offset for the bullet position
         Instantiate(playerBullet, bulletPosition, transform.rotation);      // Instantiate bullet
 
@@ -85,9 +89,23 @@ public class PlayerController : MonoBehaviour
     {
         hitPoints = 0;
         canvas.livesImages[hitPoints].enabled = false;
-
+        
+        audioSource.PlayOneShot(sfx_explosion);
         Instantiate(vfx_Explode, transform.position, transform.rotation);
-        gameManager.Invoke("GameOver", 1f);
+        gameManager.GameOver();
+        DestroySequence();
+    }
+
+    void DestroySequence()
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
+        Destroy(GetComponent<Rigidbody2D>());
+        Invoke("DestroyGameObject", 1f);
+    }
+
+    void DestroyGameObject()
+    {
         Destroy(gameObject);
     }
 }
