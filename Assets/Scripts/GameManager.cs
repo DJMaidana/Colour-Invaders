@@ -4,14 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
-{
+{   
+    [Header("Variables")]
+    [Tooltip("Enemy movement speed at start")]
     public float gameDifficulty = 1f;
-    float difficultyIncrease = .1f;
+    float difficultyIncrease = .1f;     //  How much enemies increase in speed for each enemy destroyed
+    [SerializeField] int enemiesRemaining;
 
     int currentScore;
     float hiScore;
-    [SerializeField] int enemiesRemaining;
-
+    
     public List<Enemy> listEnemiesConnected = new List<Enemy>();
 
     MoveEnemy enemyMover;

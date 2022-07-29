@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MoveEnemy : MonoBehaviour
 {
-    Vector3 movementDirection = Vector3.right;
+    [Header("Variables")]
     public float lateralSpeed = 1f;
-
     [SerializeField] float verticalSpeed = .25f;
+    Vector3 movementDirection = Vector3.right;
 
     GameManager gameManager;
 

@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class ButtonMovement : MonoBehaviour
 {
-    bool isMoving = true;
+    [Header("Variables")]
     [SerializeField] float speed = 10f;
+    [Tooltip("Where the button stops in x coordinates")]
     [SerializeField] float xDestination = 0f;
+
+    [Header("States")]
+    bool isMoving = true;
 
     void Update()   // Moves button to the right until it reaches the given x coordinates in the world.
     {
