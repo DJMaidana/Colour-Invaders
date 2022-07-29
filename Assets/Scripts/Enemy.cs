@@ -86,7 +86,8 @@ public class Enemy : MonoBehaviour
             hitPoints--;
         }
         else
-        {
+        {  
+            gameManager.ReduceRemainingEnemies(1);
             EnemyDeath();
         }
     }
