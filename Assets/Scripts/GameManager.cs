@@ -90,6 +90,11 @@ public class GameManager : MonoBehaviour
         enemiesRemaining -= listEnemiesConnected.Count;
     }
 
+    public void ReduceRemainingEnemies(int amountToReduce)
+    {
+        enemiesRemaining -= amountToReduce;
+    }
+
     void SetCanvasScore()
     {
         string format = "0000000";
