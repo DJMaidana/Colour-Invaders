@@ -102,7 +102,7 @@ MonoBehaviour:
   movementSpeed: 5
   hitPoints: 3
   playerBullet: {fileID: 1688185707649724095, guid: 5b2654b4dafa1429facf82507bb4ae5c, type: 3}
-  vfx_Explode: {fileID: 0}
+  vfx_Explode: {fileID: 9220420198951553788, guid: bf93e0b7729e6d7eebf4ca5192f6eac8, type: 3}
   bulletFired: 0
 --- !u!61 &4786956871360556454
 BoxCollider2D:
