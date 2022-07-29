@@ -8,7 +8,7 @@ public class ButtonMovement : MonoBehaviour
     [SerializeField] float speed = 10f;
     [SerializeField] float xDestination = 0f;
 
-    void Update()
+    void Update()   // Moves button to the right until it reaches the given x coordinates in the world.
     {
         if (isMoving)
         {

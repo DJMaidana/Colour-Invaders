@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (gameObject.CompareTag("Player_Bullet"))      // Only if the bullet was fired by the player 
+        if (gameObject.CompareTag("Player_Bullet"))      // If the bullet was fired by the player 
         { 
             player.bulletFired = false;   // Enable the player to shoot again
             Destroy(gameObject);
