@@ -6,6 +6,7 @@ public class ButtonMovement : MonoBehaviour
 {
     bool isMoving = true;
     [SerializeField] float speed = 10f;
+    [SerializeField] float xDestination = 0f;
 
     void Update()
     {
@@ -14,9 +15,9 @@ public class ButtonMovement : MonoBehaviour
             transform.Translate(Vector2.right * Time.deltaTime * speed);
         }
 
-        if (transform.localPosition.x >= 0)
+        if (transform.localPosition.x >= xDestination)
         {
-            transform.localPosition = new Vector2(0,transform.localPosition.y);
+            transform.localPosition = new Vector2(xDestination,transform.localPosition.y);
             isMoving = false;
         }
     }

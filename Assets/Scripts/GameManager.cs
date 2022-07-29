@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
         CheckHiScore();
         SaveCurrentScore();
         SaveLives();
-        //Canvas level won enable
+        ShowWinMessage();
         Invoke("ReloadLevel", 2f);
     }
 
@@ -125,8 +125,18 @@ public class GameManager : MonoBehaviour
         CheckHiScore();
         ResetCurrentScore();
         ResetLives();
-        //canvas gameover enable
+        ShowGameOverMessage();
         Invoke("ReloadLevel", 2f);
+    }
+
+    void ShowWinMessage()
+    {
+        canvas.levelCompleteText.gameObject.SetActive(true);
+    }
+
+    void ShowGameOverMessage()
+    {
+        canvas.gameOverText.gameObject.SetActive(true);
     }
 
     void SaveCurrentScore()

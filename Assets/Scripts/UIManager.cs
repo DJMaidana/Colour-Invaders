@@ -10,4 +10,6 @@ public class UIManager : MonoBehaviour
     public Image[] livesImages; 
     public TMP_Text currentScoreText;
     public TMP_Text hiScoreText;
+    public TMP_Text gameOverText;
+    public TMP_Text levelCompleteText;
 }
