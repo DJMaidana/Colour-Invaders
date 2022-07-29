@@ -22,9 +22,9 @@ public class MoveEnemy : MonoBehaviour
         MoveEnemies();
     }
     
-    void MoveEnemies()
+    void MoveEnemies()  //  Move  enemy formation sideways based on movementDirection
     {
-        transform.Translate(movementDirection * Time.deltaTime * lateralSpeed);    //  Move sideways based on movementDirection
+        transform.Translate(movementDirection * Time.deltaTime * lateralSpeed);    
     }
 
     void OnTriggerEnter2D(Collider2D other)

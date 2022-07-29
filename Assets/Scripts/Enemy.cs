@@ -5,6 +5,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] int hitPoints = 1;
+    [SerializeField] int minShootingPeriod = 5;
+    [SerializeField] int maxShootingPeriod = 10;
+        
 
     [SerializeField] GameObject enemyBullet;
     [SerializeField] ParticleSystem vfx_Explode;
@@ -27,13 +30,13 @@ public class Enemy : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    void Update()
+    void Update()   //  Checks if the enemy is the first of its column to allow it to shoot
     {
         if (isInFront)
         {
             if (!hasFired)
             {
-                firingRate = Random.Range(5,10);
+                firingRate = Random.Range(minShootingPeriod, maxShootingPeriod);  // Shoots with varying frequency
                 Invoke("Shoot", firingRate);
                 hasFired = true;                //  locks firing ability until the method Shoot() reloads it
             }
@@ -50,11 +53,11 @@ public class Enemy : MonoBehaviour
         hasFired = false;                                                     // Enables firing
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)      //  Checks if the enemy was hit by a bullet or crashed against Covers
     {
         switch (other.gameObject.tag)   
         {
-            case "Player_Bullet":       //  Sequence for being shot by the player
+            case "Player_Bullet":       //  Sequence for being hit by a Player Bullet
 
                 HitByPlayer();
                 break;
@@ -74,7 +77,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            AddSelfToList();          
+            AddSelfToList();      
             AddNeighborsToList();
         }
     }
@@ -87,7 +90,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {  
-            gameManager.ReduceRemainingEnemies(1);
+            gameManager.ReduceRemainingEnemies(1);  
             EnemyDeath();
         }
     }
@@ -97,15 +100,15 @@ public class Enemy : MonoBehaviour
         audioSource.PlayOneShot(sfx_explosion);
         Instantiate(vfx_Explode, transform.position, transform.rotation);
         gameManager.IncreaseDifficulty();
-        DestroySequence();
+        DestructionSequence();
     }
 
-    void DestroySequence()
+    void DestructionSequence()  //  This sequence eliminates all intervention of the GameObject in the world, but waits for sound
     {
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         Destroy(GetComponent<Rigidbody2D>());
-        Invoke("DestroyGameObject", 1f);
+        Invoke("DestroyGameObject", 1f);    //  Destroys after a second to allow sounds to keep playing.
     }
 
     void DestroyGameObject()
@@ -113,18 +116,18 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void AddSelfToList()
+    void AddSelfToList()    // Adds itself to the Game Manager list containing the enemies hit by Player Bullets
     {
-        alreadyChecked = true;
+        alreadyChecked = true;      //  Flags itself so the neighboring enemies don't count it again
         gameManager.listEnemiesConnected.Add(gameObject.GetComponent<Enemy>());
     }
 
     public void AddNeighborsToList()
     {
-        gameManager.GetConnectedEnemies();
+        gameManager.GetConnectedEnemies();      
     }
 
-    public void CheckNeighbors()
+    public void CheckNeighbors()    // Casts a ray in four directions and decides if the adjacent enemies are of the same color
     {
         CheckUp();
         CheckDown();

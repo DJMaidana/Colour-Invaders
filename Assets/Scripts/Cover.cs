@@ -43,15 +43,15 @@ public class Cover : MonoBehaviour
     {
         audioSource.PlayOneShot(sfx_explosion);
         Instantiate(vfx_Explode, transform.position, transform.rotation);
-        DestroySequence();
+        DestructionSequence();
     }
 
-    void DestroySequence()
+    void DestructionSequence()      //  This sequence eliminates all intervention of the GameObject in the world, but waits for sound
     {
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         Destroy(GetComponent<Rigidbody2D>());
-        Invoke("DestroyGameObject", 1f);
+        Invoke("DestroyGameObject", 1f);    //  Destroys after a second to allow sounds to keep playing.
     }
 
     void DestroyGameObject()

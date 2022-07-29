@@ -23,13 +23,13 @@ public class GameManager : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         canvas = FindObjectOfType<UIManager>();
 
-        if (!PlayerPrefs.HasKey("CurrentScore"))
+        if (!PlayerPrefs.HasKey("CurrentScore"))        // If there is no previously saved data, creates it 
         {
             PlayerPrefs.SetInt("CurrentScore", 0);
             PlayerPrefs.SetInt("HiScore", 0);
             PlayerPrefs.SetInt("Lives", 3);
         }
-        else
+        else        // If there is saved data, loads it
         {
             LoadScores();
             LoadLives();
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (enemiesRemaining <= 0)
+        if (enemiesRemaining <= 0)      // When there are no more enemies, starts Win Sequence
         {
             Win();
         }
@@ -55,6 +55,9 @@ public class GameManager : MonoBehaviour
             GoBackToMenu();
         }
     }
+
+    //  Makes enemies hit by a Player Bullet check their neighbors' color in a recursive way
+    //  Adds all the same colored neighbours to a List and uses it to calculate score
     public void GetConnectedEnemies()
     {
         Enemy currentEnemy = listEnemiesConnected[0];
@@ -75,7 +78,7 @@ public class GameManager : MonoBehaviour
         enemyMover.lateralSpeed += difficultyIncrease;
     }
 
-    void CalculateScore()
+    void CalculateScore()   // Calculates score to be awarded based on amount of enemies destroyed
     {
         int enemiesDestroyed = listEnemiesConnected.Count;
         int scoreAwarded = enemiesDestroyed * Fibonacci(enemiesDestroyed + 1) * 10;
@@ -95,7 +98,7 @@ public class GameManager : MonoBehaviour
         enemiesRemaining -= amountToReduce;
     }
 
-    void SetCanvasScore()
+    void SetCanvasScore()   // Updates canvas scores
     {
         string format = "0000000";
         string currentScoreString = currentScore.ToString(format);
@@ -104,7 +107,7 @@ public class GameManager : MonoBehaviour
         canvas.hiScoreText.text = $"HI-SCORE - {hiScoreString}";
     }
 
-    int Fibonacci(int n)  
+    int Fibonacci(int n)    // Calculates the Nth fibonacci number
     {  
         if ((n == 0) || (n == 1))  
         {  
@@ -186,7 +189,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Lives", 3);
     }
 
-    void SetLivesImages()
+    void SetLivesImages()   // Updates how many lives are shown based on the Player's remaining lives
     {
         int imageIndex = 2;
 

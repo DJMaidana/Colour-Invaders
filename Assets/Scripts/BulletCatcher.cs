@@ -13,7 +13,7 @@ public class BulletCatcher : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))       //  If an enemy reaches the bottom of the screen the player loses.
         {
             gameManager.GameOver();
         }
